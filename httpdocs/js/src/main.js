@@ -25,6 +25,8 @@ const clock = new THREE.Clock();
 function animate() {
 	// get the time the previous frame took
 	const delta = clock.getDelta();
+
+
 	//instead of updating this on resize, let's just do it every frame
 	// calculate new camera aspect ratio
 	camera.aspect = canvas.offsetWidth / canvas.offsetHeight;
