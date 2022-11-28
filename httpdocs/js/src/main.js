@@ -2,6 +2,7 @@ import { Scene, PerspectiveCamera, WebGLRenderer, Clock } from 'three';
 import { Box } from './box';
 import { createCamera } from './camera';
 import { cameraMove } from './cameraMove';
+import { cameraTrack } from './cameraTrack';
 
 const canvas = document.querySelector(".canvas");
 // need a scene
@@ -14,6 +15,8 @@ const renderer = new WebGLRenderer({ antialias: true, canvas: canvas });
 
 let cube = new Box();
 scene.add(cube);
+
+cameraTrack(camera);
 
 const clock = new Clock();
 
@@ -32,7 +35,7 @@ function animate() {
 	// if the user switches tab, then delta just keeps rising!
 	if (delta < 0.5) {
 		cube.tick(delta);
-		cameraMove(camera, delta);
+		//cameraMove(camera, delta);
 	}
 
 	// renderer needs to be told the scene and the camera to render
