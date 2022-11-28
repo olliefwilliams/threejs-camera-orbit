@@ -28,7 +28,12 @@ function animate() {
 	// "false" prevents THREE from setting the canvas size in inline css
 	renderer.setSize(canvas.offsetWidth, canvas.offsetHeight, false);
 
-	cube.tick(delta);
+	// only animate if there's a reasonable time between frames
+	// if the user switches tab, then delta just keeps rising!
+	if (delta < 0.5) {
+		cube.tick(delta);
+		cameraMove(camera, delta);
+	}
 
 	// renderer needs to be told the scene and the camera to render
 	renderer.render(scene, camera);
