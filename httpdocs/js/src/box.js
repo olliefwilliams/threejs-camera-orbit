@@ -1,10 +1,10 @@
-import * as THREE from 'three';
+import { Mesh, BoxGeometry, MeshBasicMaterial } from 'three';
 
 
-class Box extends THREE.Mesh {
+class Box extends Mesh {
 	constructor() {
-		const geometry = new THREE.BoxGeometry(2, 2, 2);
-		const material = new THREE.MeshBasicMaterial({ color: 0x000cc });
+		const geometry = new BoxGeometry(2, 2, 2);
+		const material = new MeshBasicMaterial({ color: 0x000cc });
 		super(geometry, material); // invokes the original THREE.mesh constructor
 
 	}
