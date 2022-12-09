@@ -25,12 +25,34 @@ function cameraTrack(camera, delta) {
 		mouseX /= (window.innerWidth / 2)
 		mouseY /= (window.innerHeight / 2)
 
+		/*
+		// moves the camera up and down
 
 		// set factor to move the camera by
 		let cameraFactor = 2;
-
 		camera.position.x = cameraFactor * mouseX;
 		camera.position.y = (cameraFactor * mouseY) * -1; // invert movement
+		*/
+
+
+		// Let's move the camera left to right AROUND the cube
+		// instead of just panning in a straight line
+
+		/*
+		Parametric equation of a circle is
+		x = r * cos(a)
+		y = r * sin(a)
+		Where r is the radius, and a the angle in radians
+		*/
+
+		// remember we just moved the camera back from the origin, so
+		// const radius = camera.position.z; 	
+		// but instead of redeclaring this variable, let's just hard code it for now
+		const radius = 5;
+		const angleRad = 0.5; // max angle either side of origin
+
+		camera.position.x = (radius * Math.sin(angleRad * mouseX));
+		camera.position.z = (radius * Math.cos(angleRad * mouseX));
 
 		// make camera look at cube
 		camera.lookAt(origin);
