@@ -1,10 +1,15 @@
-import { Mesh, BoxGeometry, MeshBasicMaterial } from 'three';
+import { Mesh, BoxGeometry, MeshStandardMaterial } from 'three';
 
 
 class Box extends Mesh {
 	constructor() {
 		const geometry = new BoxGeometry(2, 2, 2);
-		const material = new MeshBasicMaterial({ color: 0x000cc });
+		const material = new MeshStandardMaterial({
+			color: 0x0022cc,
+			roughness: 0.7,
+			metalness: 0.5,
+
+		});
 		super(geometry, material); // invokes the original THREE.mesh constructor
 
 	}

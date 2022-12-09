@@ -1,17 +1,22 @@
 import { Scene, PerspectiveCamera, WebGLRenderer, Clock } from 'three';
 import { Box } from './box';
 import { createCamera } from './camera';
+import { createLight } from './light';
 import { cameraMove } from './cameraMove';
 import { cameraTrack } from './cameraTrack';
 
 const canvas = document.querySelector(".canvas");
 // need a scene
 const scene = new Scene();
+
 // a camera
 let camera = createCamera();
 // and a renderer
-const renderer = new WebGLRenderer({ antialias: true, canvas: canvas });
-// have to set size, in this case to match the canvas element
+const renderer = new WebGLRenderer({ antialias: true, canvas: canvas, alpha: true });
+renderer.physicallyCorrectLights = true;
+
+let light = createLight();
+scene.add(light);
 
 let cube = new Box();
 scene.add(cube);
