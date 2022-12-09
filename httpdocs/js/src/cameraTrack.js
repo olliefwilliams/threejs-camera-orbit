@@ -1,4 +1,9 @@
+import { Vector3 } from 'three';
+
 function cameraTrack(camera, delta) {
+
+	// set point for camera to look at every time it moves
+	const origin = new Vector3(0, 0, 0);
 
 	document.addEventListener('mousemove', (e) => {
 		// get mouse coordinates
@@ -16,15 +21,19 @@ function cameraTrack(camera, delta) {
 
 		// now divide that by the highest it can be
 		// to convert it into a decimal percentage equivalent
+		// Range is now +-1 for X & Y
 		mouseX /= (window.innerWidth / 2)
 		mouseY /= (window.innerHeight / 2)
 
 
 		// set factor to move the camera by
-		let cameraFactor = 0.5;
+		let cameraFactor = 2;
 
 		camera.position.x = cameraFactor * mouseX;
 		camera.position.y = (cameraFactor * mouseY) * -1; // invert movement
+
+		// make camera look at cube
+		camera.lookAt(origin);
 
 	})
 

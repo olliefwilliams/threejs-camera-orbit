@@ -14,7 +14,7 @@ class Box extends Mesh {
 
 	}
 	tick(delta) {
-		const radiansPerSecond = (2 * Math.PI) / 4 // one quarter of one full rotation
+		const radiansPerSecond = (2 * Math.PI) / 8 // one eighth of one full rotation
 		// delta is how many fractions of a second the last frame took
 		// so if we multiply that by the number of radians per second
 		// we get how much to rotate the cube by each frame to hit that rotation rate
