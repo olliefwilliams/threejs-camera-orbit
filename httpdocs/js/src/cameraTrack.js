@@ -34,23 +34,22 @@ function cameraTrack(camera, delta) {
 		const radius = 5;
 		const angleRad = 1.2; // max angle either side of origin
 
-		// followed from https://andreasrohner.at/posts/Web%20Development/JavaScript/Simple-orbital-camera-controls-for-THREE-js/
-		// with further help from 
+		// Parametric equation of a sphere taken from https://dynref.engr.illinois.edu/rvs.html
+		// x = r cos(θ) sin(ϕ), y = r sin(θ) sin (ϕ), z = r cos(ϕ)
+		// Where θ is angle in XZ plane (horz), and ϕ is angle in YZ plane (vert)
 		// but the co-ordinates system needed to be converted to match Three's system
+		// so X becomes Z, Y becomes X, and Z becomes Y
 
 		// Rotation on XZ plane, happy with negative numbers
-		let phi = mouseX * angleRad;
+		let theta = mouseX * angleRad;
 		// Rotation on YZ plane, not happy with negative numbers
 		// 1/4 circle added at the end to bring camera down from 0deg,
-		// which would be pointing down at top of subject, see https://dynref.engr.illinois.edu/rvs.html
-		let theta = (mouseY * (angleRad)) + (Math.PI / 2);
+		// which would be pointing down at top of subject
+		let phi = (mouseY * (angleRad)) + (Math.PI / 2);
 
-		console.log(`X: ${mouseX}, Y: ${mouseY}, Theta: ${theta}, Phi: ${phi}`);
-
-		camera.position.z = radius * Math.sin(theta) * Math.cos(phi);
+		camera.position.z = radius * Math.cos(theta) * Math.sin(phi);
 		camera.position.x = radius * Math.sin(theta) * Math.sin(phi);
-		camera.position.y = radius * Math.cos(theta);
-		//console.log(camera.position);
+		camera.position.y = radius * Math.cos(phi);
 
 		// make camera look at cube
 		camera.lookAt(origin);
