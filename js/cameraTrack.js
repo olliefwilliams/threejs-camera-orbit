@@ -32,7 +32,7 @@ function cameraTrack(camera, delta) {
 		// const radius = camera.position.z; 	
 		// but instead of redeclaring this variable, let's just hard code it for now
 		const radius = 5;
-		const angleRad = 1.2; // max angle either side of origin
+		const angleRad = 0.8; // max angle either side of origin
 
 		// Parametric equation of a sphere taken from https://dynref.engr.illinois.edu/rvs.html
 		// x = r cos(θ) sin(ϕ), y = r sin(θ) sin (ϕ), z = r cos(ϕ)
