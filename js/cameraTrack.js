@@ -1,6 +1,6 @@
 import { Vector3 } from 'three';
 
-function cameraTrack(camera, delta) {
+function cameraTrack(camera, radius) {
 
 	// set point for camera to look at every time it moves
 	const origin = new Vector3(0, 0, 0);
@@ -28,10 +28,7 @@ function cameraTrack(camera, delta) {
 		mouseX /= (window.innerWidth / 2)
 		mouseY /= (window.innerHeight / 2)
 
-		// remember we just moved the camera back from the origin, so
 		// const radius = camera.position.z; 	
-		// but instead of redeclaring this variable, let's just hard code it for now
-		const radius = 5;
 		const angleRad = 0.8; // max angle either side of origin
 
 		// Parametric equation of a sphere taken from https://dynref.engr.illinois.edu/rvs.html
@@ -45,7 +42,7 @@ function cameraTrack(camera, delta) {
 		// Rotation on YZ plane, not happy with negative numbers
 		// 1/4 circle added at the end to bring camera down from 0deg,
 		// which would be pointing down at top of subject
-		let phi = (mouseY * (angleRad)) + (Math.PI / 2);
+		let phi = (mouseY * angleRad) + (Math.PI / 2);
 
 		camera.position.z = radius * Math.cos(theta) * Math.sin(phi);
 		camera.position.x = radius * Math.sin(theta) * Math.sin(phi);
@@ -55,11 +52,8 @@ function cameraTrack(camera, delta) {
 		camera.lookAt(origin);
 
 	}
-
-
+	// only need to update this if the mouse moves, not on every animation frame
 	document.addEventListener('mousemove', orbit);
-
-
 
 };
 

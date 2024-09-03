@@ -1,10 +1,10 @@
 import { PerspectiveCamera } from 'three';
 
 
-function createCamera() {
-	const camera = new PerspectiveCamera(75, 1, 0.1, 1000); // 1 is dummy data as we set this later
+function createCamera(distFromOrigin) {
+	const camera = new PerspectiveCamera(75, 1, 0.1, 1000); // 1 the aspect ratio, we'll update this later
 	// move camera back
-	camera.position.z = 5;
+	camera.position.z = distFromOrigin;
 
 	camera.aspectUpdate = (ratio) => {
 		camera.aspect = ratio;

@@ -9,8 +9,9 @@ const canvas = document.querySelector(".canvas");
 // need a scene
 const scene = new Scene();
 
+const cameraOrbitRadius = 5;
 // a camera
-let camera = createCamera();
+let camera = createCamera(cameraOrbitRadius);
 // and a renderer
 const renderer = new WebGLRenderer({ antialias: true, canvas: canvas, alpha: true });
 renderer.physicallyCorrectLights = true;
@@ -21,7 +22,7 @@ scene.add(light);
 let cube = new Box();
 scene.add(cube);
 
-cameraTrack(camera);
+cameraTrack(camera, cameraOrbitRadius);
 
 const clock = new Clock();
 
@@ -29,7 +30,7 @@ function animate() {
 	// get the time the previous frame took
 	const delta = clock.getDelta();
 
-	//instead of updating this on resize, let's just do it every frame
+	// Ideally we would update this on resize, but as this is an experiment let's just do it every frame
 	// calculate new camera aspect ratio
 	camera.aspectUpdate(canvas.offsetWidth / canvas.offsetHeight);
 	// now let's update the renderer size too,
